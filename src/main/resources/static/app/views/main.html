@@ -1,0 +1,49 @@
+<div class="cart box_1" style="float: left">
+    <a>
+        <h2>
+            <div class="total">
+                <span class="simpleCart_total">Products <img src="app/images/products.png" alt=""> </span>
+            </div>
+        </h2>
+    </a>
+</div>
+
+<!--</div>-->
+<input class="form-control" ng-model="searchKeyword" placeholder="Search"/>
+<div class="panel-body">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Product</th>
+            <th>Unit Price</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Add to Cart</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr ng-repeat="pro in products | filter: searchKeyword ">
+            <td>{{ pro.id }}</td>
+            <td>{{ pro.name }}</td>
+            <td>Rs. &nbsp;{{ pro.unitPrice | number : 2 }}</td>
+            <td>{{ pro.description }}</td>
+            <td><input class="form-control" name="stocks" type="number" placeholder="0" min="1" value="1" step="1"
+                       required="required" ng-model="stock" style="width: 75px"/>
+            </td>
+            <td style="width: 150px">
+                Rs. {{pro.unitPrice * stock | number : 2}}
+            </td>
+            <td>
+                <button type="submit" class="btn btn-primary" ng-disabled="!stock" ng-click="addToCart(pro,stock)">Add to Cart &nbsp; <span
+                        class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></button>
+                </a>
+            </td>
+
+        </tr>
+
+        </tbody>
+    </table>
+</div>
